@@ -1,0 +1,31 @@
+{
+  "name": "cloudflare-workers-openapi",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "prepare": "pnpm -s --package husky@9.1.1 dlx husky",
+    "wrangler": "pnpm -s --package wrangler@4.69.0 dlx wrangler",
+    "openapi-typescript": "pnpm -s --package openapi-typescript@7.13.0 dlx openapi-typescript",
+    "deploy": "pnpm wrangler deploy",
+    "dev": "pnpm wrangler dev",
+    "start": "pnpm wrangler dev",
+    "cf-typegen": "pnpm wrangler types",
+    "asana-typegen": "pnpm -s --package openapi-typescript@7.13.0 dlx openapi-typescript https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml --alphabetize --root-types --generate-path-params | oxfmt --stdin-filepath src/generated/asana.ts > src/generated/asana.ts"
+  },
+  "dependencies": {
+    "hono": "^4.6.20",
+    "openapi-fetch": "^0.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.0",
+    "@types/service-worker-mock": "^2.0.4",
+    "@typescript/native-preview": "7.0.0-dev.20260227.1",
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs}": "oxlint",
+    "*.{ts,tsx,json,jsonc,md,yaml}": "oxfmt --write"
+  },
+  "packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
+}

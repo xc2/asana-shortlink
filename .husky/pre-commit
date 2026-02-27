@@ -1,0 +1,1 @@
+pnpm --package lint-staged@16.2.7 dlx lint-staged
